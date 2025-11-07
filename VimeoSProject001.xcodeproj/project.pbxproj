@@ -6,8 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		157F7EEC2EBE2DA0005592E3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157F7EEB2EBE2DA0005592E3 /* MainTabBarController.swift */; };
+		157F7EEF2EBE2DB9005592E3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 157F7EEE2EBE2DB9005592E3 /* SnapKit */; };
+		157F7EF22EBE2DDC005592E3 /* MainHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157F7EF12EBE2DDC005592E3 /* MainHomeViewController.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		15114FAC2EB7A25A00210F09 /* VimeoSProject001.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VimeoSProject001.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		157F7EEB2EBE2DA0005592E3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		157F7EF12EBE2DDC005592E3 /* MainHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				157F7EEF2EBE2DB9005592E3 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +54,8 @@
 		15114FA32EB7A25A00210F09 = {
 			isa = PBXGroup;
 			children = (
+				157F7EF02EBE2DC3005592E3 /* MainHome */,
+				157F7EEA2EBE2D3F005592E3 /* MainTabBar */,
 				15114FAE2EB7A25A00210F09 /* VimeoSProject001 */,
 				15114FAD2EB7A25A00210F09 /* Products */,
 			);
@@ -56,6 +67,22 @@
 				15114FAC2EB7A25A00210F09 /* VimeoSProject001.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		157F7EEA2EBE2D3F005592E3 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				157F7EEB2EBE2DA0005592E3 /* MainTabBarController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		157F7EF02EBE2DC3005592E3 /* MainHome */ = {
+			isa = PBXGroup;
+			children = (
+				157F7EF12EBE2DDC005592E3 /* MainHomeViewController.swift */,
+			);
+			path = MainHome;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,6 +105,7 @@
 			);
 			name = VimeoSProject001;
 			packageProductDependencies = (
+				157F7EEE2EBE2DB9005592E3 /* SnapKit */,
 			);
 			productName = VimeoSProject001;
 			productReference = 15114FAC2EB7A25A00210F09 /* VimeoSProject001.app */;
@@ -107,6 +135,9 @@
 			);
 			mainGroup = 15114FA32EB7A25A00210F09;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				157F7EED2EBE2DB9005592E3 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 15114FAD2EB7A25A00210F09 /* Products */;
 			projectDirPath = "";
@@ -132,6 +163,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				157F7EF22EBE2DDC005592E3 /* MainHomeViewController.swift in Sources */,
+				157F7EEC2EBE2DA0005592E3 /* MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +376,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		157F7EED2EBE2DB9005592E3 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		157F7EEE2EBE2DB9005592E3 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 157F7EED2EBE2DB9005592E3 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 15114FA42EB7A25A00210F09 /* Project object */;
 }

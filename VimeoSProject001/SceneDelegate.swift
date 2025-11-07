@@ -18,9 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.overrideUserInterfaceStyle = .dark
         
-        let viewController = ViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-        window?.rootViewController = navigationController
+        let tabBar = MainTabBarController()
+        window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
     }
 
@@ -29,15 +28,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
-    }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        guard let root = window?.rootViewController else { return }
-        if TokenKeychain.readToken() == nil {
-            DispatchQueue.main.async { [weak self] in
-                self?.presentTokenPrompt(on: root)
-            }
-        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -56,53 +46,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
-}
-
-// MARK: - Token Prompt & Validation
-extension SceneDelegate {
-    private func presentTokenPrompt(on presenter: UIViewController) {
-        let ac = UIAlertController(title: "輸入 Vimeo Token",
-                                   message: "貼上你的 Personal Access Token（只會儲存在此裝置）。",
-                                   preferredStyle: .alert)
-        ac.addTextField { tf in
-            tf.placeholder = "Personal Access Token"
-            tf.isSecureTextEntry = true
-            tf.autocapitalizationType = .none
-            tf.autocorrectionType = .no
-            tf.clearButtonMode = .whileEditing
-        }
-        ac.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: "儲存並驗證", style: .default, handler: { [weak self, weak ac] _ in
-            let token = ac?.textFields?.first?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            guard !token.isEmpty else { return }
-            self?.validatePAT(token) { isValid in
-                DispatchQueue.main.async {
-                    if isValid {
-                        _ = TokenKeychain.saveToken(token)
-                    } else {
-                        let err = UIAlertController(title: "Token 無效",
-                                                    message: "請確認 PAT 是否正確與具備必要 scopes。",
-                                                    preferredStyle: .alert)
-                        err.addAction(UIAlertAction(title: "重新輸入", style: .default, handler: { [weak self] _ in
-                            self?.presentTokenPrompt(on: presenter)
-                        }))
-                        presenter.present(err, animated: true)
-                    }
-                }
-            }
-        }))
-        presenter.present(ac, animated: true)
-    }
-
-    private func validatePAT(_ token: String, completion: @escaping (Bool) -> Void) {
-        var req = URLRequest(url: URL(string: "https://api.vimeo.com/me")!)
-        req.httpMethod = "GET"
-        req.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        URLSession.shared.dataTask(with: req) { _, resp, _ in
-            let code = (resp as? HTTPURLResponse)?.statusCode ?? -1
-            completion((200..<300).contains(code))
-        }.resume()
-    }
 }
 
