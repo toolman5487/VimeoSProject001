@@ -8,29 +8,66 @@
 import UIKit
 
 final class MainTabBarController: UITabBarController {
+    
+    private enum Tab: Int, CaseIterable {
+        case home
+        case my
+
+        var title: String {
+            switch self {
+            case .home: return "Home"
+            case .my: return "Person"
+            }
+        }
+
+        var icon: String {
+            switch self {
+            case .home: return "house"
+            case .my: return "person"
+            }
+        }
+
+        var selectedIcon: String {
+            switch self {
+            case .home: return "house.fill"
+            case .my: return "person.fill"
+            }
+        }
+
+        func makeRootController() -> UIViewController {
+            switch self {
+            case .home:
+                let vc = MainHomeViewController()
+                vc.title = title
+                return vc
+            case .my:
+                let vc = MainMyViewController()
+                vc.title = "Vimeo"
+                return vc
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureAppearance()
         configureTabs()
     }
 
     private func configureTabs() {
-        let home = MainHomeViewController()
-        home.title = "首頁"
+        viewControllers = Tab.allCases.map { tab in
+            let controller = tab.makeRootController()
+            let navigation = UINavigationController(rootViewController: controller)
+            navigation.tabBarItem = UITabBarItem(title: tab.title,
+                                                 image: UIImage(systemName: tab.icon),
+                                                 selectedImage: UIImage(systemName: tab.selectedIcon))
+            return navigation
+        }
+        selectedIndex = Tab.home.rawValue
+    }
 
-        let homeNav = UINavigationController(rootViewController: home)
-        homeNav.tabBarItem = UITabBarItem(title: "首頁",
-                                          image: UIImage(systemName: "house"),
-                                          selectedImage: UIImage(systemName: "house.fill"))
-
-        let verify = ViewController()
-        verify.title = "Vimeo"
-
-        let verifyNav = UINavigationController(rootViewController: verify)
-        verifyNav.tabBarItem = UITabBarItem(title: "Vimeo",
-                                            image: UIImage(systemName: "key"),
-                                            selectedImage: UIImage(systemName: "key.fill"))
-
-        viewControllers = [homeNav, verifyNav]
-        selectedIndex = 0
+    private func configureAppearance() {
+        tabBar.tintColor = .label
+        tabBar.unselectedItemTintColor = .secondaryLabel
     }
 }

@@ -10,12 +10,14 @@
 		157F7EEC2EBE2DA0005592E3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157F7EEB2EBE2DA0005592E3 /* MainTabBarController.swift */; };
 		157F7EEF2EBE2DB9005592E3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 157F7EEE2EBE2DB9005592E3 /* SnapKit */; };
 		157F7EF22EBE2DDC005592E3 /* MainHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157F7EF12EBE2DDC005592E3 /* MainHomeViewController.swift */; };
+		15D8040C2EBE32D1006C8CFB /* MainMyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D8040B2EBE32D1006C8CFB /* MainMyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		15114FAC2EB7A25A00210F09 /* VimeoSProject001.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VimeoSProject001.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		157F7EEB2EBE2DA0005592E3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		157F7EF12EBE2DDC005592E3 /* MainHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeViewController.swift; sourceTree = "<group>"; };
+		15D8040B2EBE32D1006C8CFB /* MainMyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -54,6 +56,7 @@
 		15114FA32EB7A25A00210F09 = {
 			isa = PBXGroup;
 			children = (
+				15D8040A2EBE32B3006C8CFB /* MainMyPage */,
 				157F7EF02EBE2DC3005592E3 /* MainHome */,
 				157F7EEA2EBE2D3F005592E3 /* MainTabBar */,
 				15114FAE2EB7A25A00210F09 /* VimeoSProject001 */,
@@ -83,6 +86,14 @@
 				157F7EF12EBE2DDC005592E3 /* MainHomeViewController.swift */,
 			);
 			path = MainHome;
+			sourceTree = "<group>";
+		};
+		15D8040A2EBE32B3006C8CFB /* MainMyPage */ = {
+			isa = PBXGroup;
+			children = (
+				15D8040B2EBE32D1006C8CFB /* MainMyViewController.swift */,
+			);
+			path = MainMyPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15D8040C2EBE32D1006C8CFB /* MainMyViewController.swift in Sources */,
 				157F7EF22EBE2DDC005592E3 /* MainHomeViewController.swift in Sources */,
 				157F7EEC2EBE2DA0005592E3 /* MainTabBarController.swift in Sources */,
 			);

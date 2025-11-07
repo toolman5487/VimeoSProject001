@@ -15,11 +15,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        let tabBar = MainTabBarController()
+        let navigation = UINavigationController(rootViewController: tabBar)
+
         window = UIWindow(windowScene: windowScene)
         window?.overrideUserInterfaceStyle = .dark
-        
-        let tabBar = MainTabBarController()
-        window?.rootViewController = tabBar
+        window?.rootViewController = navigation
         window?.makeKeyAndVisible()
     }
 
