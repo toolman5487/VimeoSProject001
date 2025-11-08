@@ -10,14 +10,23 @@
 		157F7EEC2EBE2DA0005592E3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157F7EEB2EBE2DA0005592E3 /* MainTabBarController.swift */; };
 		157F7EEF2EBE2DB9005592E3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 157F7EEE2EBE2DB9005592E3 /* SnapKit */; };
 		157F7EF22EBE2DDC005592E3 /* MainHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157F7EF12EBE2DDC005592E3 /* MainHomeViewController.swift */; };
-		15D8040C2EBE32D1006C8CFB /* MainMyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D8040B2EBE32D1006C8CFB /* MainMyViewController.swift */; };
+		15D8040F2EBF3F0C006C8CFB /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 15D8040E2EBF3F0C006C8CFB /* SDWebImage */; };
+		15D804132EBF7ED9006C8CFB /* MainMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D804122EBF7ED9006C8CFB /* MainMeViewController.swift */; };
+		15D804152EBF80EF006C8CFB /* MainMeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D804142EBF80EF006C8CFB /* MainMeModel.swift */; };
+		15D804172EBF8404006C8CFB /* MainMeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D804162EBF8404006C8CFB /* MainMeService.swift */; };
+		15D8041A2EBF84CD006C8CFB /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D804192EBF84CD006C8CFB /* APIConfig.swift */; };
+		15D8041C2EBF8D83006C8CFB /* MainMeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D8041B2EBF8D83006C8CFB /* MainMeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		15114FAC2EB7A25A00210F09 /* VimeoSProject001.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VimeoSProject001.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		157F7EEB2EBE2DA0005592E3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		157F7EF12EBE2DDC005592E3 /* MainHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeViewController.swift; sourceTree = "<group>"; };
-		15D8040B2EBE32D1006C8CFB /* MainMyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMyViewController.swift; sourceTree = "<group>"; };
+		15D804122EBF7ED9006C8CFB /* MainMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMeViewController.swift; sourceTree = "<group>"; };
+		15D804142EBF80EF006C8CFB /* MainMeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMeModel.swift; sourceTree = "<group>"; };
+		15D804162EBF8404006C8CFB /* MainMeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMeService.swift; sourceTree = "<group>"; };
+		15D804192EBF84CD006C8CFB /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
+		15D8041B2EBF8D83006C8CFB /* MainMeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -46,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15D8040F2EBF3F0C006C8CFB /* SDWebImage in Frameworks */,
 				157F7EEF2EBE2DB9005592E3 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,7 +66,8 @@
 		15114FA32EB7A25A00210F09 = {
 			isa = PBXGroup;
 			children = (
-				15D8040A2EBE32B3006C8CFB /* MainMyPage */,
+				15D804182EBF84A3006C8CFB /* NetworkConfig */,
+				15D804112EBF7EB4006C8CFB /* MainMe */,
 				157F7EF02EBE2DC3005592E3 /* MainHome */,
 				157F7EEA2EBE2D3F005592E3 /* MainTabBar */,
 				15114FAE2EB7A25A00210F09 /* VimeoSProject001 */,
@@ -88,12 +99,23 @@
 			path = MainHome;
 			sourceTree = "<group>";
 		};
-		15D8040A2EBE32B3006C8CFB /* MainMyPage */ = {
+		15D804112EBF7EB4006C8CFB /* MainMe */ = {
 			isa = PBXGroup;
 			children = (
-				15D8040B2EBE32D1006C8CFB /* MainMyViewController.swift */,
+				15D804122EBF7ED9006C8CFB /* MainMeViewController.swift */,
+				15D804142EBF80EF006C8CFB /* MainMeModel.swift */,
+				15D804162EBF8404006C8CFB /* MainMeService.swift */,
+				15D8041B2EBF8D83006C8CFB /* MainMeViewModel.swift */,
 			);
-			path = MainMyPage;
+			path = MainMe;
+			sourceTree = "<group>";
+		};
+		15D804182EBF84A3006C8CFB /* NetworkConfig */ = {
+			isa = PBXGroup;
+			children = (
+				15D804192EBF84CD006C8CFB /* APIConfig.swift */,
+			);
+			path = NetworkConfig;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,6 +139,7 @@
 			name = VimeoSProject001;
 			packageProductDependencies = (
 				157F7EEE2EBE2DB9005592E3 /* SnapKit */,
+				15D8040E2EBF3F0C006C8CFB /* SDWebImage */,
 			);
 			productName = VimeoSProject001;
 			productReference = 15114FAC2EB7A25A00210F09 /* VimeoSProject001.app */;
@@ -130,7 +153,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 2610;
 				TargetAttributes = {
 					15114FAB2EB7A25A00210F09 = {
 						CreatedOnToolsVersion = 26.0.1;
@@ -148,6 +171,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				157F7EED2EBE2DB9005592E3 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				15D8040D2EBF3F0C006C8CFB /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 15114FAD2EB7A25A00210F09 /* Products */;
@@ -174,8 +198,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15D8040C2EBE32D1006C8CFB /* MainMyViewController.swift in Sources */,
+				15D804152EBF80EF006C8CFB /* MainMeModel.swift in Sources */,
+				15D804132EBF7ED9006C8CFB /* MainMeViewController.swift in Sources */,
+				15D8041A2EBF84CD006C8CFB /* APIConfig.swift in Sources */,
 				157F7EF22EBE2DDC005592E3 /* MainHomeViewController.swift in Sources */,
+				15D8041C2EBF8D83006C8CFB /* MainMeViewModel.swift in Sources */,
+				15D804172EBF8404006C8CFB /* MainMeService.swift in Sources */,
 				157F7EEC2EBE2DA0005592E3 /* MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +332,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -361,6 +390,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -398,6 +428,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		15D8040D2EBF3F0C006C8CFB /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.21.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -405,6 +443,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 157F7EED2EBE2DB9005592E3 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		15D8040E2EBF3F0C006C8CFB /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15D8040D2EBF3F0C006C8CFB /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

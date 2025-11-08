@@ -1,15 +1,15 @@
 //
-//  MainMyViewController.swift
+//  MainMeViewController.swift
 //  VimeoSProject001
 //
-//  Created by Willy Hsu on 2025/11/7.
+//  Created by Willy Hsu on 2025/11/8.
 //
 
 import Foundation
 import UIKit
 import SnapKit
 
-class MainMyViewController: UIViewController {
+class MainMeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

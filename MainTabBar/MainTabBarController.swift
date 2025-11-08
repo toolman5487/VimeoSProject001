@@ -41,8 +41,8 @@ final class MainTabBarController: UITabBarController {
                 vc.title = title
                 return vc
             case .my:
-                let vc = MainMyViewController()
-                vc.title = "Vimeo"
+                let vc = MainMeViewController()
+                vc.title = "Me"
                 return vc
             }
         }
