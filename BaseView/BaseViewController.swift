@@ -18,10 +18,20 @@ class BaseViewController: UIViewController {
         return tableView
     }()
 
+    private lazy var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        return control
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureTableView()
+    }
+
+    deinit {
+        refreshControl.removeTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
 
     private func configureTableView() {
@@ -30,5 +40,28 @@ class BaseViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+
+        tableView.refreshControl = refreshControl
+    }
+
+    func beginRefreshing() {
+        guard !refreshControl.isRefreshing else { return }
+        refreshControl.beginRefreshing()
+        if tableView.contentOffset.y == 0 {
+            tableView.setContentOffset(CGPoint(x: 0, y: -refreshControl.frame.size.height), animated: true)
+        }
+    }
+
+    func endRefreshing() {
+        guard refreshControl.isRefreshing else { return }
+        refreshControl.endRefreshing()
+    }
+
+    @objc private func handleRefresh() {
+        performRefresh()
+    }
+
+    func performRefresh() {
+        endRefreshing()
     }
 }
