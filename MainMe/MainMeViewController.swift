@@ -7,19 +7,29 @@
 
 import UIKit
 import SnapKit
+import Combine
 
+@MainActor
 class MainMeViewController: BaseViewController {
 
-    private let placeholderContent = MainMeInfoCell.Content(
-        name: "Willy Hsu",
-        location: "Taipei City, Taiwan",
-        bio: "Software Developer!",
-        avatarURL: URL(string: "https://developer.apple.com/assets/elements/icons/swift/swift-128x128_2x.png")
-    )
+    private let viewModel: MainMeViewModel
+    private var cancellables = Set<AnyCancellable>()
+
+    init(viewModel: MainMeViewModel? = nil) {
+        self.viewModel = viewModel ?? MainMeViewModel()
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        self.viewModel = MainMeViewModel()
+        super.init(coder: coder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        bindViewModel()
+        Task { await viewModel.load() }
     }
 
     private func setupTableView() {
@@ -30,19 +40,59 @@ class MainMeViewController: BaseViewController {
         tableView.estimatedRowHeight = 200
         tableView.showsVerticalScrollIndicator = false
     }
+
+    private func bindViewModel() {
+        viewModel.$me
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+
+        viewModel.$isLoading
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                if isLoading {
+                    self?.beginRefreshing()
+                } else {
+                    self?.endRefreshing()
+                }
+            }
+            .store(in: &cancellables)
+
+        viewModel.$error
+            .compactMap { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] error in
+                self?.presentError(error)
+            }
+            .store(in: &cancellables)
+    }
+
+    private func presentError(_ error: Error) {
+        let alert = UIAlertController(title: "Oops", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
 }
 
 extension MainMeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.me == nil ? 0 : 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainMeInfoCell.reuseIdentifier, for: indexPath) as? MainMeInfoCell else {
+        guard let model = viewModel.me,
+              let cell = tableView.dequeueReusableCell(withIdentifier: MainMeInfoCell.reuseIdentifier, for: indexPath) as? MainMeInfoCell else {
             return UITableViewCell()
         }
-        cell.configure(with: placeholderContent)
+        let content = MainMeViewModel.makeInfoContent(from: model)
+        cell.configure(name: content.name,
+                       location: content.location,
+                       bio: content.bio,
+                       avatarURL: content.avatarURL)
         return cell
     }
 }

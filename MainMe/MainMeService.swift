@@ -42,6 +42,10 @@ final class MainMeService: MainMeServicing {
         let (data, response) = try await session.data(for: request)
 
         guard let http = response as? HTTPURLResponse, 200..<300 ~= http.statusCode else {
+            if let http = response as? HTTPURLResponse {
+                print("HTTP status:", http.statusCode)
+                print("Response body:", String(data: data, encoding: .utf8) ?? "No body")
+            }
             let error = APIError.invalidResponse
             config.log(error)
             throw error
@@ -50,7 +54,13 @@ final class MainMeService: MainMeServicing {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-        return try decoder.decode(MainMeModel.self, from: data)
+        do {
+            return try decoder.decode(MainMeModel.self, from: data)
+        } catch {
+            print("[MainMeService] Decoding error:", error)
+            print("[MainMeService] Raw response:", String(data: data, encoding: .utf8) ?? "<invalid utf8>")
+            throw error
+        }
     }
 }
 

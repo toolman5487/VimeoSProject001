@@ -12,31 +12,6 @@ import SDWebImage
 
 final class MainMeInfoCell: UITableViewCell {
 
-    struct Content {
-        let name: String
-        let location: String?
-        let bio: String?
-        let avatarURL: URL?
-
-        init(name: String, location: String? = nil, bio: String? = nil, avatarURL: URL? = nil) {
-            self.name = name
-            self.location = location
-            self.bio = bio
-            self.avatarURL = avatarURL
-        }
-
-        init(model: MainMeModel) {
-            self.name = model.name
-            self.location = model.location ?? model.locationDetails?.formattedAddress
-            self.bio = model.bio ?? model.shortBio
-            if let url = model.pictures?.sizes?.last?.link ?? model.pictures?.baseLink {
-                self.avatarURL = url
-            } else {
-                self.avatarURL = nil
-            }
-        }
-    }
-
     static let reuseIdentifier = "MainMeInfoCell"
 
     private let cardView: UIView = {
@@ -52,9 +27,11 @@ final class MainMeInfoCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 40
+        imageView.layer.cornerRadius = 36
         imageView.layer.masksToBounds = true
-        imageView.backgroundColor = .tertiarySystemFill
+        imageView.layer.borderWidth = 2
+        imageView.layer.borderColor = UIColor.tertiaryLabel.cgColor
+        imageView.backgroundColor = .label
         return imageView
     }()
 
@@ -75,7 +52,7 @@ final class MainMeInfoCell: UITableViewCell {
 
     private let locationLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .systemFont(ofSize: 12, weight: .medium)
         label.textColor = .secondaryLabel
         label.numberOfLines = 2
         return label
@@ -91,7 +68,7 @@ final class MainMeInfoCell: UITableViewCell {
 
     private let bioLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15, weight: .regular)
+        label.font = .systemFont(ofSize: 16, weight: .regular)
         label.textColor = .secondaryLabel
         label.numberOfLines = 0
         return label
@@ -143,13 +120,13 @@ final class MainMeInfoCell: UITableViewCell {
         }
 
         avatarImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.leading.equalToSuperview().offset(20)
-            make.size.equalTo(CGSize(width: 80, height: 80))
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
+            make.size.equalTo(CGSize(width: 72, height: 72))
         }
 
         textStack.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
+            make.centerY.equalToSuperview()
             make.leading.equalTo(avatarImageView.snp.trailing).offset(16)
             make.trailing.equalToSuperview().inset(20)
             make.bottom.lessThanOrEqualToSuperview().inset(20)
@@ -160,10 +137,13 @@ final class MainMeInfoCell: UITableViewCell {
         locationIconView.setContentHuggingPriority(.required, for: .horizontal)
     }
 
-    func configure(with content: Content) {
-        nameLabel.text = content.name
+    func configure(name: String,
+                   location: String?,
+                   bio: String?,
+                   avatarURL: URL?) {
+        nameLabel.text = name
 
-        let trimmedLocation = content.location?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedLocation = location?.trimmingCharacters(in: .whitespacesAndNewlines)
         if let location = trimmedLocation, !location.isEmpty {
             locationLabel.text = location
             locationStack.isHidden = false
@@ -172,7 +152,7 @@ final class MainMeInfoCell: UITableViewCell {
             locationStack.isHidden = true
         }
 
-        let trimmedBio = content.bio?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedBio = bio?.trimmingCharacters(in: .whitespacesAndNewlines)
         if let bio = trimmedBio, !bio.isEmpty {
             bioLabel.text = bio
             bioLabel.isHidden = false
@@ -181,7 +161,7 @@ final class MainMeInfoCell: UITableViewCell {
             bioLabel.isHidden = true
         }
 
-        if let url = content.avatarURL {
+        if let url = avatarURL {
             avatarImageView.sd_setImage(with: url, placeholderImage: placeholderImage)
         } else {
             avatarImageView.image = placeholderImage

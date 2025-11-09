@@ -107,9 +107,8 @@
 		15D804112EBF7EB4006C8CFB /* MainMe */ = {
 			isa = PBXGroup;
 			children = (
-				15D804262EC06791006C8CFB /* Model */,
-				15D804122EBF7ED9006C8CFB /* MainMeViewController.swift */,
 				15D804142EBF80EF006C8CFB /* MainMeModel.swift */,
+				15D804122EBF7ED9006C8CFB /* MainMeViewController.swift */,
 				15D804162EBF8404006C8CFB /* MainMeService.swift */,
 				15D8041B2EBF8D83006C8CFB /* MainMeViewModel.swift */,
 				15D804232EC057F0006C8CFB /* MainMeTableViewCell.swift */,
@@ -131,13 +130,6 @@
 				15D8041E2EC051D9006C8CFB /* BaseViewController.swift */,
 			);
 			path = BaseView;
-			sourceTree = "<group>";
-		};
-		15D804262EC06791006C8CFB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

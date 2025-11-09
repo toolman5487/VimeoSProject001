@@ -48,6 +48,7 @@ struct MainMeModel: Decodable {
             let options: [String]?
             let total: Int?
         }
+
         let albums: Connection?
         let videos: Connection?
         let likes: Connection?
@@ -85,6 +86,11 @@ struct MainMeModel: Decodable {
         }
     }
 
+    struct Skill: Decodable {
+        let uri: String?
+        let name: String?
+    }
+
     let uri: String
     let name: String
     let link: URL?
@@ -98,7 +104,7 @@ struct MainMeModel: Decodable {
     let websites: [Website]?
     let metadata: Metadata?
     let locationDetails: LocationDetails?
-    let skills: [String]?
+    let skills: [Skill]?
     let availableForHire: Bool?
     let canWorkRemotely: Bool?
     let resourceKey: String?
