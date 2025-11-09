@@ -16,6 +16,8 @@
 		15D804172EBF8404006C8CFB /* MainMeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D804162EBF8404006C8CFB /* MainMeService.swift */; };
 		15D8041A2EBF84CD006C8CFB /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D804192EBF84CD006C8CFB /* APIConfig.swift */; };
 		15D8041C2EBF8D83006C8CFB /* MainMeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D8041B2EBF8D83006C8CFB /* MainMeViewModel.swift */; };
+		15D8041F2EC051D9006C8CFB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D8041E2EC051D9006C8CFB /* BaseViewController.swift */; };
+		15D804242EC057F0006C8CFB /* MainMeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D804232EC057F0006C8CFB /* MainMeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		15D804162EBF8404006C8CFB /* MainMeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMeService.swift; sourceTree = "<group>"; };
 		15D804192EBF84CD006C8CFB /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		15D8041B2EBF8D83006C8CFB /* MainMeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMeViewModel.swift; sourceTree = "<group>"; };
+		15D8041E2EC051D9006C8CFB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		15D804232EC057F0006C8CFB /* MainMeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -66,6 +70,7 @@
 		15114FA32EB7A25A00210F09 = {
 			isa = PBXGroup;
 			children = (
+				15D8041D2EC051C0006C8CFB /* BaseView */,
 				15D804182EBF84A3006C8CFB /* NetworkConfig */,
 				15D804112EBF7EB4006C8CFB /* MainMe */,
 				157F7EF02EBE2DC3005592E3 /* MainHome */,
@@ -102,10 +107,12 @@
 		15D804112EBF7EB4006C8CFB /* MainMe */ = {
 			isa = PBXGroup;
 			children = (
+				15D804262EC06791006C8CFB /* Model */,
 				15D804122EBF7ED9006C8CFB /* MainMeViewController.swift */,
 				15D804142EBF80EF006C8CFB /* MainMeModel.swift */,
 				15D804162EBF8404006C8CFB /* MainMeService.swift */,
 				15D8041B2EBF8D83006C8CFB /* MainMeViewModel.swift */,
+				15D804232EC057F0006C8CFB /* MainMeTableViewCell.swift */,
 			);
 			path = MainMe;
 			sourceTree = "<group>";
@@ -116,6 +123,21 @@
 				15D804192EBF84CD006C8CFB /* APIConfig.swift */,
 			);
 			path = NetworkConfig;
+			sourceTree = "<group>";
+		};
+		15D8041D2EC051C0006C8CFB /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				15D8041E2EC051D9006C8CFB /* BaseViewController.swift */,
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
+		15D804262EC06791006C8CFB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,7 +221,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				15D804152EBF80EF006C8CFB /* MainMeModel.swift in Sources */,
+				15D8041F2EC051D9006C8CFB /* BaseViewController.swift in Sources */,
 				15D804132EBF7ED9006C8CFB /* MainMeViewController.swift in Sources */,
+				15D804242EC057F0006C8CFB /* MainMeTableViewCell.swift in Sources */,
 				15D8041A2EBF84CD006C8CFB /* APIConfig.swift in Sources */,
 				157F7EF22EBE2DDC005592E3 /* MainHomeViewController.swift in Sources */,
 				15D8041C2EBF8D83006C8CFB /* MainMeViewModel.swift in Sources */,
