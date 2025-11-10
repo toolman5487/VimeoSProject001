@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		150797252EC22E6C006B535C /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150797242EC22E6C006B535C /* AlertPresenter.swift */; };
 		157F7EEC2EBE2DA0005592E3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157F7EEB2EBE2DA0005592E3 /* MainTabBarController.swift */; };
 		157F7EEF2EBE2DB9005592E3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 157F7EEE2EBE2DB9005592E3 /* SnapKit */; };
 		157F7EF22EBE2DDC005592E3 /* MainHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157F7EF12EBE2DDC005592E3 /* MainHomeViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		150797242EC22E6C006B535C /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		15114FAC2EB7A25A00210F09 /* VimeoSProject001.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VimeoSProject001.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		157F7EEB2EBE2DA0005592E3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		157F7EF12EBE2DDC005592E3 /* MainHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		15D8041D2EC051C0006C8CFB /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				150797242EC22E6C006B535C /* AlertPresenter.swift */,
 				15D8041E2EC051D9006C8CFB /* BaseViewController.swift */,
 			);
 			path = BaseView;
@@ -216,6 +219,7 @@
 				15D8041F2EC051D9006C8CFB /* BaseViewController.swift in Sources */,
 				15D804132EBF7ED9006C8CFB /* MainMeViewController.swift in Sources */,
 				15D804242EC057F0006C8CFB /* MainMeTableViewCell.swift in Sources */,
+				150797252EC22E6C006B535C /* AlertPresenter.swift in Sources */,
 				15D8041A2EBF84CD006C8CFB /* APIConfig.swift in Sources */,
 				157F7EF22EBE2DDC005592E3 /* MainHomeViewController.swift in Sources */,
 				15D8041C2EBF8D83006C8CFB /* MainMeViewModel.swift in Sources */,

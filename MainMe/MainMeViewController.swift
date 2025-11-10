@@ -65,15 +65,11 @@ class MainMeViewController: BaseViewController {
             .compactMap { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
-                self?.presentError(error)
+                guard let self else { return }
+                AlertPresenter.presentError(from: self,
+                                            message: error.localizedDescription)
             }
             .store(in: &cancellables)
-    }
-
-    private func presentError(_ error: Error) {
-        let alert = UIAlertController(title: "Oops", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
     }
 }
 
