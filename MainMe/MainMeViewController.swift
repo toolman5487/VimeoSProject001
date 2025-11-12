@@ -84,11 +84,7 @@ extension MainMeViewController: UITableViewDelegate, UITableViewDataSource {
               let cell = tableView.dequeueReusableCell(withIdentifier: MainMeInfoCell.reuseIdentifier, for: indexPath) as? MainMeInfoCell else {
             return UITableViewCell()
         }
-        let content = MainMeViewModel.makeInfoContent(from: model)
-        cell.configure(name: content.name,
-                       location: content.location,
-                       bio: content.bio,
-                       avatarURL: content.avatarURL)
+        cell.configure(with: model)
         return cell
     }
 }

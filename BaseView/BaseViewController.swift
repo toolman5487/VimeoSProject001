@@ -27,6 +27,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        configureNavigationBar()
         configureTableView()
     }
 
@@ -63,5 +64,10 @@ class BaseViewController: UIViewController {
 
     func performRefresh() {
         endRefreshing()
+    }
+
+    private func configureNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
     }
 }

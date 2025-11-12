@@ -40,21 +40,5 @@ final class MainMeViewModel: ObservableObject {
         isLoading = false
     }
 
-    static func makeInfoContent(from model: MainMeModel) -> (name: String, location: String?, bio: String?, avatarURL: URL?) {
-        let location = model.location ?? model.locationDetails?.formattedAddress
-        let bio = model.bio ?? model.shortBio
-        let avatarURL = model.pictures?.sizes?.last?.link ?? model.pictures?.baseLink
-        return (name: model.name,
-                location: location?.nilIfEmpty,
-                bio: bio?.nilIfEmpty,
-                avatarURL: avatarURL)
-    }
-}
-
-private extension String {
-    var nilIfEmpty: String? {
-        let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
-        return trimmed.isEmpty ? nil : trimmed
-    }
 }
 
