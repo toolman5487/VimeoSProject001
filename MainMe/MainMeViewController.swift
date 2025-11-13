@@ -53,10 +53,9 @@ class MainMeViewController: BaseViewController {
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoading in
-                if isLoading {
-                    self?.beginRefreshing()
-                } else {
-                    self?.endRefreshing()
+                guard let self else { return }
+                if !isLoading {
+                    self.endRefreshing()
                 }
             }
             .store(in: &cancellables)
@@ -70,6 +69,10 @@ class MainMeViewController: BaseViewController {
                                             message: error.localizedDescription)
             }
             .store(in: &cancellables)
+    }
+
+    override func performRefresh() {
+        Task { await viewModel.fetchMeData() }
     }
 }
 

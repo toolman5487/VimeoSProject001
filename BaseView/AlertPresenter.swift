@@ -26,7 +26,7 @@ enum AlertPresenter {
             Action(title: title, style: .default, handler: handler)
         }
 
-        static func cancel(_ title: String = "取消",
+        static func cancel(_ title: String = "Cancel",
                            handler: (() -> Void)? = nil) -> Action {
             Action(title: title, style: .cancel, handler: handler)
         }
@@ -56,12 +56,12 @@ enum AlertPresenter {
                         message: String?,
                         preferredStyle: UIAlertController.Style = .alert,
                         tintColor: UIColor? = nil,
-                        actions: [Action] = [.default("確定")],
+                        actions: [Action] = [.default("Comfirm")],
                         textFields: [TextFieldConfiguration] = [],
                         animated: Bool = true,
                         completion: (() -> Void)? = nil) {
         guard !actions.isEmpty else {
-            assertionFailure("AlertPresenter 需要至少一個 Action")
+            assertionFailure("AlertPresenter need Action")
             return
         }
 
