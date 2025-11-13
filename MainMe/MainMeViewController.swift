@@ -29,13 +29,13 @@ class MainMeViewController: BaseViewController {
         super.viewDidLoad()
         setupTableView()
         bindViewModel()
-        Task { await viewModel.load() }
+        Task { await viewModel.fetchMeData() }
     }
 
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(MainMeInfoCell.self, forCellReuseIdentifier: MainMeInfoCell.reuseIdentifier)
+        tableView.register(MainMeAvartaCell.self, forCellReuseIdentifier: MainMeAvartaCell.reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
         tableView.showsVerticalScrollIndicator = false
@@ -76,14 +76,17 @@ class MainMeViewController: BaseViewController {
 extension MainMeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.me == nil ? 0 : 1
+        let count = viewModel.me == nil ? 0 : 1
+        print("rows:", count)
+        return count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let model = viewModel.me,
-              let cell = tableView.dequeueReusableCell(withIdentifier: MainMeInfoCell.reuseIdentifier, for: indexPath) as? MainMeInfoCell else {
+              let cell = tableView.dequeueReusableCell(withIdentifier: MainMeAvartaCell.reuseIdentifier, for: indexPath) as? MainMeAvartaCell else {
             return UITableViewCell()
         }
+
         cell.configure(with: model)
         return cell
     }
