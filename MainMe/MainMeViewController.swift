@@ -36,6 +36,7 @@ class MainMeViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MainMeAvartaCell.self, forCellReuseIdentifier: MainMeAvartaCell.reuseIdentifier)
+        tableView.register(MainMeInfoCell.self, forCellReuseIdentifier: MainMeInfoCell.reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
         tableView.showsVerticalScrollIndicator = false
@@ -79,18 +80,31 @@ class MainMeViewController: BaseViewController {
 extension MainMeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = viewModel.me == nil ? 0 : 1
-        print("rows:", count)
-        return count
+        return viewModel.me == nil ? 0 : 2
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let model = viewModel.me,
-              let cell = tableView.dequeueReusableCell(withIdentifier: MainMeAvartaCell.reuseIdentifier, for: indexPath) as? MainMeAvartaCell else {
+        guard let model = viewModel.me else {
             return UITableViewCell()
         }
-
-        cell.configure(with: model)
-        return cell
+        
+        switch indexPath.row {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MainMeAvartaCell.reuseIdentifier, for: indexPath) as? MainMeAvartaCell else {
+                return UITableViewCell()
+            }
+            cell.configure(with: model)
+            return cell
+            
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MainMeInfoCell.reuseIdentifier, for: indexPath) as? MainMeInfoCell else {
+                return UITableViewCell()
+            }
+            cell.configure(with: model)
+            return cell
+            
+        default:
+            return UITableViewCell()
+        }
     }
 }

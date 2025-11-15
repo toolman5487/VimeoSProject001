@@ -78,5 +78,22 @@ final class MainMeViewModel: ObservableObject {
         return pictures.baseLink
     }
 
+// MARK: - formatGender
+    static func formatGender(_ gender: String?) -> String? {
+        guard let gender = gender?.lowercased().trimmingCharacters(in: .whitespacesAndNewlines),
+              !gender.isEmpty else {
+            return nil
+        }
+        
+        switch gender {
+        case "m", "male":
+            return "Male"
+        case "f", "female":
+            return "Female"
+        default:
+            return gender.capitalized
+        }
+    }
+
 }
 

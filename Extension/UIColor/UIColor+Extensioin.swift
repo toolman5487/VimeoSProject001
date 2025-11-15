@@ -1,8 +1,8 @@
 //
-//  Extension+UIColor.swift
+//  UIColor+Extensioin.swift
 //  VimeoSProject001
 //
-//  Created by Willy Hsu on 2025/11/13.
+//  Created by Willy Hsu on 2025/11/15.
 //
 
 import UIKit
@@ -87,4 +87,9 @@ extension UIColor {
 
         return (r, g, b, a)
     }
+
+    // MARK: - Vimeo Brand Colors
+    static let vimeoBlack = hex("#141A20")
+    static let vimeoBlue = hex("#17D5FF")
+    static let vimeoWhite = hex("#FAFCFD")
 }

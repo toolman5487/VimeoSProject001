@@ -19,7 +19,8 @@
 		15D8041C2EBF8D83006C8CFB /* MainMeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D8041B2EBF8D83006C8CFB /* MainMeViewModel.swift */; };
 		15D8041F2EC051D9006C8CFB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D8041E2EC051D9006C8CFB /* BaseViewController.swift */; };
 		15D804242EC057F0006C8CFB /* MainMeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D804232EC057F0006C8CFB /* MainMeTableViewCell.swift */; };
-		15EB27002EC61D5600DC3EF7 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EB26FF2EC61D5600DC3EF7 /* Extension+UIColor.swift */; };
+		15FE77552EC874AD00DC9192 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FE77542EC874AD00DC9192 /* String+Extension.swift */; };
+		15FE77572EC874D500DC9192 /* UIColor+Extensioin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FE77562EC874D500DC9192 /* UIColor+Extensioin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +35,8 @@
 		15D8041B2EBF8D83006C8CFB /* MainMeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMeViewModel.swift; sourceTree = "<group>"; };
 		15D8041E2EC051D9006C8CFB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		15D804232EC057F0006C8CFB /* MainMeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMeTableViewCell.swift; sourceTree = "<group>"; };
-		15EB26FF2EC61D5600DC3EF7 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
+		15FE77542EC874AD00DC9192 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		15FE77562EC874D500DC9192 /* UIColor+Extensioin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensioin.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -141,6 +143,7 @@
 		15EB26FD2EC61D3300DC3EF7 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				15FE77532EC8749400DC9192 /* String */,
 				15EB26FE2EC61D3B00DC3EF7 /* UIColor */,
 			);
 			path = Extension;
@@ -149,9 +152,17 @@
 		15EB26FE2EC61D3B00DC3EF7 /* UIColor */ = {
 			isa = PBXGroup;
 			children = (
-				15EB26FF2EC61D5600DC3EF7 /* Extension+UIColor.swift */,
+				15FE77562EC874D500DC9192 /* UIColor+Extensioin.swift */,
 			);
 			path = UIColor;
+			sourceTree = "<group>";
+		};
+		15FE77532EC8749400DC9192 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				15FE77542EC874AD00DC9192 /* String+Extension.swift */,
+			);
+			path = String;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,8 +253,9 @@
 				15D8041A2EBF84CD006C8CFB /* APIConfig.swift in Sources */,
 				157F7EF22EBE2DDC005592E3 /* MainHomeViewController.swift in Sources */,
 				15D8041C2EBF8D83006C8CFB /* MainMeViewModel.swift in Sources */,
-				15EB27002EC61D5600DC3EF7 /* Extension+UIColor.swift in Sources */,
 				15D804172EBF8404006C8CFB /* MainMeService.swift in Sources */,
+				15FE77572EC874D500DC9192 /* UIColor+Extensioin.swift in Sources */,
+				15FE77552EC874AD00DC9192 /* String+Extension.swift in Sources */,
 				157F7EEC2EBE2DA0005592E3 /* MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
