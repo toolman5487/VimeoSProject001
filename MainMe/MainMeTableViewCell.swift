@@ -25,9 +25,9 @@ final class MainMeAvartaCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 60
+        imageView.layer.cornerRadius = 40
         imageView.layer.masksToBounds = true
-        imageView.layer.borderWidth = 8
+        imageView.layer.borderWidth = 4
         imageView.layer.borderColor = UIColor.vimeoBlue.cgColor
         return imageView
     }()
@@ -70,20 +70,20 @@ final class MainMeAvartaCell: UITableViewCell {
         containerView.addSubview(nameLabel)
         
         containerView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.bottom.equalToSuperview().inset(16)
+            make.left.right.equalToSuperview().inset(16)
         }
         
         avatarImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: 120, height: 120))
+            make.top.bottom.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview()
+            make.size.equalTo(CGSize(width: 80, height: 80))
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(avatarImageView.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview().offset(-20)
+            make.centerY.equalTo(avatarImageView)
+            make.left.equalTo(avatarImageView.snp.right).offset(16)
         }
     }
     
@@ -98,6 +98,81 @@ final class MainMeAvartaCell: UITableViewCell {
     }
 }
 
+// MARK: - InfoRowView
+final class InfoRowView: UIView {
+    
+    private let iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .label
+        return imageView
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 17)
+        label.textColor = .label
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .separator
+        return view
+    }()
+    
+    var showSeparator: Bool = true {
+        didSet {
+            separatorView.isHidden = !showSeparator
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupUI()
+    }
+    
+    private func setupUI() {
+        backgroundColor = .secondarySystemGroupedBackground
+        
+        addSubview(iconImageView)
+        addSubview(titleLabel)
+        addSubview(separatorView)
+        
+        iconImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
+            make.size.equalTo(CGSize(width: 20, height: 20))
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalTo(iconImageView.snp.trailing).offset(12)
+            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalToSuperview().offset(12)
+            make.bottom.equalToSuperview().offset(-12)
+        }
+        
+        separatorView.snp.makeConstraints { make in
+            make.leading.equalTo(titleLabel)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.height.equalTo(0.5)
+        }
+    }
+    
+    func configure(iconSystemName: String, title: String, showSeparator: Bool = true) {
+        iconImageView.image = UIImage(systemName: iconSystemName)
+        titleLabel.text = title
+        self.showSeparator = showSeparator
+    }
+}
+
 // MARK: - InfoCell
 final class MainMeInfoCell: UITableViewCell {
     
@@ -105,8 +180,8 @@ final class MainMeInfoCell: UITableViewCell {
     
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .vimeoWhite
-        view.layer.cornerRadius = 16
+        view.backgroundColor = .secondarySystemGroupedBackground
+        view.layer.cornerRadius = 10
         view.clipsToBounds = true
         return view
     }()
@@ -114,11 +189,13 @@ final class MainMeInfoCell: UITableViewCell {
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 16
+        stack.spacing = 0
         stack.alignment = .fill
         stack.distribution = .fill
         return stack
     }()
+    
+    private var infoRowViews: [InfoRowView] = []
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -133,6 +210,7 @@ final class MainMeInfoCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        infoRowViews.removeAll()
     }
     
     private func setupUI() {
@@ -148,24 +226,24 @@ final class MainMeInfoCell: UITableViewCell {
         }
         
         stackView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(16)
-            make.left.right.equalToSuperview().inset(8)
+            make.edges.equalToSuperview()
         }
     }
     
     func configure(with model: MainMeModel) {
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        infoRowViews.removeAll()
+        
+        var rows: [(icon: String, title: String)] = []
         
         // Gender
         if let formattedGender = MainMeViewModel.formatGender(model.gender) {
-            let label = makeInfoRow(iconSystemName: "person.fill", text: formattedGender)
-            stackView.addArrangedSubview(label)
+            rows.append((icon: "person.fill", title: formattedGender))
         }
         
         // Location
         if let location = model.location?.nilIfEmpty ?? model.locationDetails?.formattedAddress?.nilIfEmpty {
-            let label = makeInfoRow(iconSystemName: "mappin.and.ellipse", text: location)
-            stackView.addArrangedSubview(label)
+            rows.append((icon: "mappin.and.ellipse", title: location))
         }
         
         // Websites
@@ -186,49 +264,22 @@ final class MainMeInfoCell: UITableViewCell {
                 let isMail = scheme == "mailto"
                 let icon = isMail ? "envelope.fill" : "link"
                 
-                let label = makeInfoRow(iconSystemName: icon, text: displayText)
-                stackView.addArrangedSubview(label)
+                rows.append((icon: icon, title: displayText))
             }
         }
         
         // Bio
         if let bio = model.bio?.nilIfEmpty ?? model.shortBio?.nilIfEmpty {
-            let label = makeInfoRow(iconSystemName: "text.alignleft", text: bio)
-            stackView.addArrangedSubview(label)
-        }
-    }
-    
-    private func makeInfoRow(iconSystemName: String, text: String) -> UILabel {
-        let label = UILabel()
-        label.numberOfLines = 1
-        
-        guard let iconImage = UIImage(systemName: iconSystemName)?.withTintColor(.vimeoBlack, renderingMode: .alwaysOriginal) else {
-            label.text = text
-            label.font = .systemFont(ofSize: 16, weight: .semibold)
-            label.textColor = .vimeoBlack
-            return label
+            rows.append((icon: "text.alignleft", title: bio))
         }
         
-        let attachment = NSTextAttachment()
-        attachment.image = iconImage
-        let iconSize: CGFloat = 16
-        attachment.bounds = CGRect(x: 0, y: -2, width: iconSize, height: iconSize)
-        
-        let iconString = NSAttributedString(attachment: attachment)
-        let spacingString = NSAttributedString(string: "  ", attributes: [.font: UIFont.systemFont(ofSize: 16)])
-        
-        let textAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 16, weight: .semibold),
-            .foregroundColor: UIColor.vimeoBlack
-        ]
-        let textString = NSAttributedString(string: text, attributes: textAttributes)
-        
-        let attributedText = NSMutableAttributedString()
-        attributedText.append(iconString)
-        attributedText.append(spacingString)
-        attributedText.append(textString)
-        
-        label.attributedText = attributedText
-        return label
+        // 創建並添加 InfoRowView
+        for (index, row) in rows.enumerated() {
+            let rowView = InfoRowView()
+            let isLast = index == rows.count - 1
+            rowView.configure(iconSystemName: row.icon, title: row.title, showSeparator: !isLast)
+            stackView.addArrangedSubview(rowView)
+            infoRowViews.append(rowView)
+        }
     }
 }
